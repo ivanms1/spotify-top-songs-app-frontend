@@ -1,25 +1,36 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-
-const CLIENT_ID = 'ceb8995553b941fc82eabbed4e9a5192';
-const CLIENT_SECRET = 'af833f7379af4d11975f575ad90f7365';
+import queryString from 'query-string';
+import TrackList from './components/track-list'
 
 class App extends Component {
-  constructor(props){
+  constructor(props){ 
     super(props);
 
+    this.state = { serverData: [] }
+
   }
+
+  componentDidMount(){
+    let parsed = queryString.parse(window.location.search);
+    let accessToken = parsed.access_token;
+
+    fetch('https://api.spotify.com/v1/me/top/tracks', {
+      headers: {'Authorization': 'Bearer ' + accessToken}
+    }).then((response) => response.json())
+    .then(data => {
+      this.setState({ serverData: data.items.sort((track, next) => next.popularity - track.popularity)});
+    })
+
+  }
+
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          <h1 className="App-title">Your top 20 tracks</h1>
+          <TrackList tracks={this.state.serverData} />
       </div>
     );
   }
