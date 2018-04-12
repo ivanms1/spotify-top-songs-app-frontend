@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import queryString from 'query-string';
 import TrackList from './components/track-list';
 import qs from 'qs';
 
@@ -14,9 +13,7 @@ class App extends Component {
 
   componentDidMount(){
     let parsed = qs.parse(window.location.search, { ignoreQueryPrefix: true });
-    console.log(parsed)
     let accessToken = parsed.access_token;
-    console.log(accessToken)
 
     fetch('https://api.spotify.com/v1/me/top/tracks', {
       headers: {'Authorization': 'Bearer ' + accessToken}
