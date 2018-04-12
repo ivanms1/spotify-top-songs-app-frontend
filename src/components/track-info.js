@@ -1,8 +1,8 @@
 import React from 'react';
 
-function TrackInfo ({name, artist}){
+function TrackInfo ({name, artist, position}){
 	return (
-		<li><h3>{name}</h3><p>{artist}</p></li>
+		<li><h3>{position} {name}</h3><p>{artist}</p></li>
 		)
 }
 
