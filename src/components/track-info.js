@@ -1,8 +1,12 @@
 import React from 'react';
 
-function TrackInfo ({name, artist, position}){
+function TrackInfo ({name, artist, position, art}){
 	return (
-		<li><h3>{position} {name}</h3><p>{artist}</p></li>
+		<div className="songBox">
+		<h3>{position} {name}</h3>
+		<p>{artist}</p>
+		<img className='art' src={art} alt="Album image"/>
+		</div>
 		)
 }
 

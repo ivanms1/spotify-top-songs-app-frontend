@@ -1,28 +1,125 @@
+@import url('https://fonts.googleapis.com/css?family=Julius+Sans+One');
+*{
+  margin: 0;
+  padding: 0;
+  color: #fff;
+  font-family: 'Julius Sans One', sans-serif;
+}
+
+body{
+  background-color: #000000;
+}
+
 .App {
   text-align: center;
+  
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.title{
+  margin: 4%;
+  font-size: 4vw;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+select{
+  color: black;
+  height: 2.5vw;
+}
+option {
+  color: black;
 }
 
-.App-title {
-  font-size: 1.5em;
+.action-call{
+  margin: 5%;
+  font-size: 3vw;
 }
 
-.App-intro {
-  font-size: large;
+.songsGrid{
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  grid-template-rows: auto;
+  align-items: center;
+  justify-content: center;
+  margin: 3% 0;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.songBox{
+  padding: 2%;
+  height:12vw;
+  border: solid 1px white;
+  margin: 1%;
+}
+
+.songBox h3 {
+  font-size: 1.7vw;
+}
+
+.songBox * {
+  margin: 10px 0 0 0;
+}
+
+.art{
+  height: 64px;
+  width: 64px;
+}
+
+button{
+  width: 20vw;
+  height: 3vw;
+  border-radius: 500px;
+  background-color: #1ED760;
+  color: #fff;
+  font-size: 1.5vw;
+}
+
+select, button {
+  margin: 0 1%;
+}
+
+@media (max-width: 800px){
+  .title{
+    margin: 7%;
+    font-size: 8vw;
+  }
+
+.action-call{
+  font-size: 6vw;
+}
+
+  .songsGrid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .songBox{
+  margin: 5%;
+  height:auto;
+  width: 90%;
+  border: solid 1px white;
+  margin: 1%;
+}
+
+.songBox h3 {
+  font-size: 8vw;
+}
+
+button{
+  width: 50vw;
+  height: 10vw;
+  border-radius: 500px;
+  background-color: #1ED760;
+  color: #fff;
+  font-size: 5vw;
+  margin: 1% 0;
+}
+
+select{
+  height: 5vw;
+  text-align: center;
+  width: 60vw;
+  margin: 2% 0;
+}
+
+
 }
