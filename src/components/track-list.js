@@ -1,5 +1,5 @@
 import React from 'react';
-import TrackInfo from './track-info'
+import TrackInfo from './track-info';
 
 function TrackList({tracks}){
 	let position = 0;
@@ -11,7 +11,7 @@ function TrackList({tracks}){
 		artist={track.artists[0].name}/>
 	})
 	return (
-		<div className="songsGrid">
+		<div key='grid' className="songsGrid">
 			{listItems}
 		</div>
 		)

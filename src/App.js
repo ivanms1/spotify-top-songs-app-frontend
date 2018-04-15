@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import qs from 'qs';
+import axios from 'axios';
+
 import './App.css';
 import TrackList from './components/track-list';
 import FormData from './components/form-data';
-import qs from 'qs';
-import axios from 'axios';
 
 class App extends Component {
   constructor(props){ 
@@ -29,10 +30,9 @@ class App extends Component {
     let accessToken = parsed.access_token;
 
     this.setState({ uriList:  this.state.serverData.map((track) => track.uri) });
-
     axios.post(`https://api.spotify.com/v1/users/${this.state.userId}/playlists`, {
-      "name": "Top 25",
-      "description": "25 most played songs",
+      "name": `Top ${this.state.limit}`,
+      "description": `Your ${this.state.limit} most played songs`,
       "public": false
     }, { headers: {'Authorization': 'Bearer ' + accessToken, 'Content-Type': 'application/json'}
     })
@@ -67,7 +67,6 @@ class App extends Component {
       headers: {'Authorization': 'Bearer ' + accessToken}
     }).then((response) => response.json())
     .then(data => {
-      console.log(data)
       this.setState({ serverData: data.items.sort((track, next) => next.popularity - track.popularity), });
     });
 
@@ -75,7 +74,7 @@ class App extends Component {
       headers: {'Authorization': 'Bearer ' + accessToken}
     }).then((response) => response.json())
     .then(data => {
-      this.setState({ userId: data.id }, () => console.log(this.state.userId));
+      this.setState({ userId: data.id } );
     })
   }
 
@@ -91,11 +90,11 @@ class App extends Component {
           {this.state.serverData ?
             <div>
             <TrackList tracks={this.state.serverData} />
-            <button onClick={this.createPlaylist}>Create Playlist</button>
-            </div>:
+            <h1 className="action-call2">Create a playlist on your <i class="fab fa-spotify"></i> acccount</h1>
+            <button className='create-playlist' onClick={this.createPlaylist}>Create Playlist</button>
+            </div> :
             <h1 className='action-call'>Find your most played songs</h1>
           }
-
       </div>
     );
   }
