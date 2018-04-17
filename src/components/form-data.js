@@ -15,7 +15,7 @@ export default function FormData (props) {
               <option value="medium_term">Last 6 months</option>
               <option value="short_term">Last month</option>
             </select>
-            <button onClick={props.createList}>Create List</button>
+            <button onClick={props.createList}>find songs</button>
           </form>
 		)
 }

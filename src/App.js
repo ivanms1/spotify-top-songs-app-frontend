@@ -60,6 +60,10 @@ class App extends Component {
 
   createList(e){
     e.preventDefault();
+
+    if(this.state.serverData){
+      this.setState( {serverData: null } )
+    }
     let parsed = qs.parse(window.location.search, { ignoreQueryPrefix: true });
     let accessToken = parsed.access_token;
 
@@ -83,7 +87,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <h1 className="title">Your most played songs on Spotify <i class="fab fa-spotify"></i></h1>
+      <div className="header">
+        <h1 className="title">Your most played songs on Spotify <i class="fab fa-spotify"></i></h1>
+        <p>Find your most played songs and make them a playlist on your account</p>
+      </div>
           <FormData setLimit={this.setLimit}
                     setTime={this.setTime}
                     createList={this.createList}/>
@@ -92,8 +99,7 @@ class App extends Component {
             <TrackList tracks={this.state.serverData} />
             <h1 className="action-call2">Create a playlist on your <i class="fab fa-spotify"></i> acccount</h1>
             <button className='create-playlist' onClick={this.createPlaylist}>Create Playlist</button>
-            </div> :
-            <h1 className='action-call'>Find your most played songs</h1>
+            </div> : null
           }
       </div>
     );
